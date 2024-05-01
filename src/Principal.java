@@ -1,3 +1,4 @@
+import com.aluracursos.screenmatch.calculos.CalculadoraDeTiempo;
 import com.aluracursos.screenmatch.modelos.Pelicula;
 import com.aluracursos.screenmatch.modelos.Serie;
 
@@ -37,13 +38,23 @@ public class Principal {
         casaDragon.showDataSheet();
         System.out.println("duracion es: " + casaDragon.getDurationInMinutes());
 
+        System.out.println("************");
 
-//        com.aluracursos.screenmatch.modelos.Pelicula otraPelicula = new com.aluracursos.screenmatch.modelos.Pelicula();
-//        otraPelicula.name = "Matrix";
-//        otraPelicula.releaseDate = 1999;
-//        otraPelicula.durationInMinutes = 120;
-//
-//        //otraPelicula.showDataSheet();
+        Pelicula otraPelicula = new Pelicula();
+        otraPelicula.setName("Matrix");
+        otraPelicula.setReleaseDate(1999);
+        otraPelicula.setDurationInMinutes(130);
+        otraPelicula.showDataSheet();
+
+        CalculadoraDeTiempo calculadora = new CalculadoraDeTiempo();
+        calculadora.incluye(miPelicula);
+        calculadora.incluye(casaDragon);
+
+        calculadora.incluye(otraPelicula);
+
+        //ver el tiempo en pantalla
+        System.out.println("Time needed to watch these titles: " + calculadora.getTiempoTotal());
+
 
     }
 }
