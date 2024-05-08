@@ -1,4 +1,6 @@
 import com.aluracursos.screenmatch.calculos.CalculadoraDeTiempo;
+import com.aluracursos.screenmatch.calculos.FiltroRecomendacion;
+import com.aluracursos.screenmatch.modelos.Episodio;
 import com.aluracursos.screenmatch.modelos.Pelicula;
 import com.aluracursos.screenmatch.modelos.Serie;
 
@@ -55,6 +57,18 @@ public class Principal {
         //ver el tiempo en pantalla
         System.out.println("Time needed to watch these titles: " + calculadora.getTiempoTotal());
 
+
+        //Creando filtro
+        FiltroRecomendacion filtroRecomendacion = new FiltroRecomendacion();
+        filtroRecomendacion.filtra(miPelicula); //Clasificacion Inerstellar
+
+        Episodio episodio = new Episodio();
+        episodio.setNumeroEpisodio(1);
+        episodio.setNombreEpisodio("La Casa Targaryan");
+        episodio.setSerie(casaDragon);
+        episodio.setTotalVisualizaciones(50);
+
+        filtroRecomendacion.filtra(episodio);
 
     }
 }
