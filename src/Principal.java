@@ -4,6 +4,8 @@ import com.aluracursos.screenmatch.modelos.Episodio;
 import com.aluracursos.screenmatch.modelos.Pelicula;
 import com.aluracursos.screenmatch.modelos.Serie;
 
+import java.util.ArrayList;
+
 public class Principal {
     public static void main(String[] args) {
         //1er 'com.aluracursos.screenmatch.modelos.Pelicula' refiere al tipo de dato.
@@ -70,5 +72,29 @@ public class Principal {
 
         filtroRecomendacion.filtra(episodio);
 
+
+        //Del segundo curso
+
+        var peliculaDeBruno = new Pelicula();
+        peliculaDeBruno.setName("Lord of the Rings");
+        peliculaDeBruno.setReleaseDate(2001);
+        peliculaDeBruno.setDurationInMinutes(180);
+        peliculaDeBruno.showDataSheet();
+
+        //creando un 'ArrayList' del tipo de dato 'Pelicula'
+        ArrayList<Pelicula> miListaDePeliculas = new ArrayList<>();
+
+        //adding new items to my list
+        miListaDePeliculas.add(miPelicula);
+        miListaDePeliculas.add(otraPelicula);
+        miListaDePeliculas.add(peliculaDeBruno);
+
+        //conocer el tamaño de la lista -> metodo '.size();'
+        System.out.println("El tamaño de mi lista es: " +  miListaDePeliculas.size());
+        //obtener el primer item -> metodo '.get(int)'
+        System.out.println("La 1er pelicula en la lista es: " + miListaDePeliculas.get(0).getName());
+
+        //imprimir la lista completa
+        System.out.println(miListaDePeliculas);
     }
 }
