@@ -95,6 +95,9 @@ public class Principal {
         System.out.println("La 1er pelicula en la lista es: " + miListaDePeliculas.get(0).getName());
 
         //imprimir la lista completa
-        System.out.println(miListaDePeliculas);
+        System.out.println(miListaDePeliculas.toString());
+
+        System.out.println("toString de la pelicula" + miListaDePeliculas.get(0).toString());
+
     }
 }
