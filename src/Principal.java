@@ -10,9 +10,9 @@ public class Principal {
     public static void main(String[] args) {
         //1er 'com.aluracursos.screenmatch.modelos.Pelicula' refiere al tipo de dato.
         //2do 'com.aluracursos.screenmatch.modelos.Pelicula' refiere a crear una nueva instancia (crea espacio en memoria para el obj)
-        Pelicula miPelicula = new Pelicula();
-        miPelicula.setName("Interstellar");
-        miPelicula.setReleaseDate(2021);
+        Pelicula miPelicula = new Pelicula("Interstellar", 2021); //constructor
+        //miPelicula.setName("");
+        //miPelicula.setReleaseDate(2021);
         miPelicula.setDurationInMinutes(190);
         miPelicula.setIncludedInPlan(true);
 
@@ -33,9 +33,9 @@ public class Principal {
 
         System.out.println("************");
 
-        Serie casaDragon = new Serie();
-        casaDragon.setName("La casa del drago");
-        casaDragon.setReleaseDate(2022);
+        Serie casaDragon = new Serie("La casa del drago", 2022); //constructor
+        //casaDragon.setName("La casa del drago");
+        //casaDragon.setReleaseDate(2022);
         casaDragon.setTemporadas(2);
         casaDragon.setMinutosPorEpisodio(50);
         casaDragon.setEposodiosPorTemporada(10);
@@ -44,9 +44,9 @@ public class Principal {
 
         System.out.println("************");
 
-        Pelicula otraPelicula = new Pelicula();
-        otraPelicula.setName("Matrix");
-        otraPelicula.setReleaseDate(1999);
+        Pelicula otraPelicula = new Pelicula("Matrix", 1999); //constructor
+        //otraPelicula.setName("");
+        //otraPelicula.setReleaseDate(1999);
         otraPelicula.setDurationInMinutes(130);
         otraPelicula.showDataSheet();
 
@@ -57,7 +57,7 @@ public class Principal {
         calculadora.incluye(otraPelicula);
 
         //ver el tiempo en pantalla
-        System.out.println("Time needed to watch these titles: " + calculadora.getTiempoTotal());
+        System.out.println("Time needed to watch these titles: " + calculadora.getTiempoTotal() + " minutes.");
 
 
         //Creando filtro
@@ -73,11 +73,11 @@ public class Principal {
         filtroRecomendacion.filtra(episodio);
 
 
-        //Del segundo curso
+        /*Del segundo curso*/
 
-        var peliculaDeBruno = new Pelicula();
-        peliculaDeBruno.setName("Lord of the Rings");
-        peliculaDeBruno.setReleaseDate(2001);
+        var peliculaDeBruno = new Pelicula("Lord of the Rings", 2001); //constructor
+        //peliculaDeBruno.setName();
+        //peliculaDeBruno.setReleaseDate(2001);
         peliculaDeBruno.setDurationInMinutes(180);
         peliculaDeBruno.showDataSheet();
 

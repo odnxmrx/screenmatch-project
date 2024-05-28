@@ -5,9 +5,12 @@ public class Serie extends Titulo{
     int eposodiosPorTemporada;
     int minutosPorEpisodio;
 
+    //constructor que matchea clase madre 'Titulo'
+    public Serie(String name, int releaseDate) {
+        super(name, releaseDate);
+    }
+
     //getters y setters
-
-
     @Override
     public int getDurationInMinutes() {
         return temporadas * eposodiosPorTemporada * minutosPorEpisodio;

@@ -10,6 +10,12 @@ public class Titulo {
     private double evaluationSum;
     private int evaluationsTotalCount;
 
+    //constructor para 'name' y 'releaseDate'
+    public Titulo(String name, int releaseDate) {
+        this.name = name;
+        this.releaseDate = releaseDate;
+    }
+
     //setters
     public void setName(String name) {
         this.name = name;
