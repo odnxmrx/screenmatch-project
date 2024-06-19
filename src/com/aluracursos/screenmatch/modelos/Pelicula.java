@@ -9,9 +9,10 @@ public class Pelicula extends Titulo implements Clasificable {
 //        //super();
 //        this.setName(name);
 //    }
-
+    //creamos el constructor de Pelicula
     public Pelicula(String name, int releaseDate) {
-        super(name, releaseDate); //'super' llama al constructor de clase madre 'titulo'
+        super(name, releaseDate);
+        //'super' llama al constructor de 'titulo' (clase madre)
     }
 
     //getter
@@ -26,7 +27,8 @@ public class Pelicula extends Titulo implements Clasificable {
 
     @Override
     public int getClasificacion() {
-        return (int) (calculateMedia() / 2); //es necesario hacer casting del valor (double -> int)
+        return (int) (calculateMedia() / 2);
+        //es necesario hacer casting del valor (double -> int)
     }
 
     //sobrescribiendo el valor de 'toString()'
@@ -34,6 +36,6 @@ public class Pelicula extends Titulo implements Clasificable {
     public String toString() {
         //return super.toString();
         //'super' -> hacemos referencia a nuestra clase madre
-        return "Pelicula: " + this.getName() + " (" + getReleaseDate() + ").";
+        return "Pelicula: " + this.getName() + " (" + getReleaseDate() + ")."; //retornamos String
     }
 }

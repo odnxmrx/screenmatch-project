@@ -6,11 +6,11 @@ public class Titulo {
     private int durationInMinutes;
     private boolean includedInPlan;
 
-    //calculo d eevaluaciones
+    //calculo de evaluaciones
     private double evaluationSum;
     private int evaluationsTotalCount;
 
-    //constructor para 'name' y 'releaseDate'
+    //constructor de Titulo, para 'name' y 'releaseDate'
     public Titulo(String name, int releaseDate) {
         this.name = name;
         this.releaseDate = releaseDate;

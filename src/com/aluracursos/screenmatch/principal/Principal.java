@@ -1,3 +1,5 @@
+package com.aluracursos.screenmatch.principal;
+
 import com.aluracursos.screenmatch.calculos.CalculadoraDeTiempo;
 import com.aluracursos.screenmatch.calculos.FiltroRecomendacion;
 import com.aluracursos.screenmatch.modelos.Episodio;
@@ -97,7 +99,7 @@ public class Principal {
         //imprimir la lista completa
         System.out.println(miListaDePeliculas);
 
-        System.out.println("toString de la pelicula" + miListaDePeliculas.get(0).toString());
+        System.out.println("toString de la pelicula en index 0: " + miListaDePeliculas.get(0).toString());
 
     }
 }
