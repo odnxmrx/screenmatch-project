@@ -1,6 +1,6 @@
 package com.aluracursos.screenmatch.modelos;
 
-public class Titulo {
+public class Titulo implements Comparable<Titulo> {
     private String name;
     private int releaseDate;
     private int durationInMinutes;
@@ -77,4 +77,9 @@ public class Titulo {
         return evaluationSum / evaluationsTotalCount;
     } //no puede estar vacía. Debe retornar algo (a diferencia de 'void')
 
+    //sobrescribiendo el 'compareTo' para comparar solo por 'name'
+    @Override
+    public int compareTo(Titulo titulo) {
+        return this.getName().compareTo(titulo.getName());
+    }
 }
