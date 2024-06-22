@@ -45,6 +45,7 @@ public class PrincipalConListas {
 
         //ordenando datos - Ordenando la lista
         ArrayList<String> listaDeArtistas = new ArrayList<>();
+        //List<String> listaDeAmigos = new ArrayList<>();
         listaDeArtistas.add("Penelope Cruz");
         listaDeArtistas.add("Antonio Banderas");
         listaDeArtistas.add("Ricardo Darin");
@@ -52,6 +53,7 @@ public class PrincipalConListas {
         System.out.println("Lista de Artistas no ordenada:");
         System.out.println(listaDeArtistas);
 
+        //COLLECTIONS
         //paquete de java.lang que permite ordenar
         Collections.sort(listaDeArtistas);
         System.out.println("Lista de Artistas ordenada:");
