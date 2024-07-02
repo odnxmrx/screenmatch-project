@@ -46,9 +46,16 @@ public class PrincipalConBusqueda {
 //        System.out.println(miTitulo.getName());
         System.out.println(miTituloOmdb);
 
-        Titulo miTitulo = new Titulo(miTituloOmdb);
-        System.out.println(miTitulo);
+        try {
+            Titulo miTitulo = new Titulo(miTituloOmdb);
+            System.out.println("Titulo ya convertido: " + miTitulo);
 
+        } catch (NumberFormatException e) { //siempre se debe incluir el 'catch'
+            System.out.println("Ocurrió un error: ");
+            System.out.println(e.getMessage());
+            //throw new RuntimeException(e);
+        }
+        System.out.println("Programa finalizado.");
 
     }
 }
