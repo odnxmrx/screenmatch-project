@@ -1,5 +1,6 @@
 package com.aluracursos.screenmatch.modelos;
 
+import com.aluracursos.screenmatch.exceptions.ErrorConversionOfDurationException;
 import com.google.gson.annotations.SerializedName;
 
 public class Titulo implements Comparable<Titulo> {
@@ -24,6 +25,11 @@ public class Titulo implements Comparable<Titulo> {
      this.name = miTituloOmdb.title();
      this.releaseDate = Integer.valueOf(miTituloOmdb.year()); //year es un String y 'releaseDate' es int
 
+    //creando mi propia excepcion
+    //excepcion para 'runtime' que devuelve API con 'N/A'
+    if(miTituloOmdb.runtime().contains("N/A")) {
+        throw new ErrorConversionOfDurationException("Unnable to convert duration string N/A to number.");
+    }
 
      this.durationInMinutes = Integer.valueOf(
              miTituloOmdb

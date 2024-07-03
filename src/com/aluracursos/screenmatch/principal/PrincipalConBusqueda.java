@@ -1,5 +1,6 @@
 package com.aluracursos.screenmatch.principal;
 
+import com.aluracursos.screenmatch.exceptions.ErrorConversionOfDurationException;
 import com.aluracursos.screenmatch.modelos.Titulo;
 import com.aluracursos.screenmatch.modelos.TituloOmdb;
 import com.google.gson.FieldNamingPolicy;
@@ -58,6 +59,8 @@ public class PrincipalConBusqueda {
             //throw new RuntimeException(e);
         } catch (IllegalArgumentException e) {
             System.out.println("Error en URI. Verifique dirección.");
+        } catch (ErrorConversionOfDurationException e) {
+            System.out.println(e.getMessage()); //imprimimos el error seteado al crear throw new
         } catch (Exception e) { //'Exception' clase madre de todas las excepciones
             //NO es buena práctica tener todas las excepciones englobadas pues perdemos control
             System.out.println("Ocurrió error inesperado.");
