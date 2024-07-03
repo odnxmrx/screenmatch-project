@@ -23,30 +23,30 @@ public class PrincipalConBusqueda {
         //URL to search API
         String searchUrl = "https://www.omdbapi.com/?t=" + newSearch + "&apikey=b81b726d";
 
-        //utilizando la clase HttpRequest
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(searchUrl)) //url a consultar
-                .build();
+        try {
+            //utilizando la clase HttpRequest
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(searchUrl)) //url a consultar
+                    .build();
 
-        HttpResponse<String> response = client
-                .send(request, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response = client
+                    .send(request, HttpResponse.BodyHandlers.ofString());
 
-        String json = response.body();
-        //System.out.println(response.body());
-        System.out.println(json);
+            String json = response.body();
+            //System.out.println(response.body());
+            System.out.println(json);
 
-        //Gson myGson = new Gson();
-        Gson myGson = new GsonBuilder()
-                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
-                .create();
+            //Gson myGson = new Gson();
+            Gson myGson = new GsonBuilder()
+                    .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                    .create();
 
-        TituloOmdb miTituloOmdb = myGson.fromJson(json, TituloOmdb.class);
+            TituloOmdb miTituloOmdb = myGson.fromJson(json, TituloOmdb.class);
 
 //        System.out.println(miTitulo.getName());
-        System.out.println(miTituloOmdb);
+            System.out.println(miTituloOmdb);
 
-        try {
             Titulo miTitulo = new Titulo(miTituloOmdb);
             System.out.println("Titulo ya convertido: " + miTitulo);
 
@@ -54,6 +54,11 @@ public class PrincipalConBusqueda {
             System.out.println("Ocurrió un error: ");
             System.out.println(e.getMessage());
             //throw new RuntimeException(e);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error en URI. Verifique dirección.");
+        } catch (Exception e) { //'Exception' clase madre de todas las excepciones
+            //NO es buena práctica tener todas las excepciones englobadas pues perdemos control
+            System.out.println("Ocurrió error inesperado.");
         }
         System.out.println("Programa finalizado.");
 
