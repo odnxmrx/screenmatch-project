@@ -23,7 +23,14 @@ public class Titulo implements Comparable<Titulo> {
     public Titulo(TituloOmdb miTituloOmdb) {
      this.name = miTituloOmdb.title();
      this.releaseDate = Integer.valueOf(miTituloOmdb.year()); //year es un String y 'releaseDate' es int
-     this.durationInMinutes = Integer.valueOf(miTituloOmdb.runtime().substring(0, 2)); //'runtime' obtiene '000 min'
+
+
+     this.durationInMinutes = Integer.valueOf(
+             miTituloOmdb
+                     .runtime()
+                     .substring(0, 3)
+                     .replace(" ", "") //dado el caso de obtener "90 "
+     ); //'runtime' obtiene "000 min"
     }
 
     //setters

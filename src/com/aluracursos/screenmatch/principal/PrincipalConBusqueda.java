@@ -21,7 +21,9 @@ public class PrincipalConBusqueda {
         var newSearch = userInput.nextLine();
 
         //URL to search API
-        String searchUrl = "https://www.omdbapi.com/?t=" + newSearch + "&apikey=b81b726d";
+        String searchUrl = "https://www.omdbapi.com/?t=" +
+                newSearch.replace(" ","+") +
+                "&apikey=b81b726d";
 
         try {
             //utilizando la clase HttpRequest
