@@ -4,9 +4,9 @@ import com.aluracursos.screenmatch.exceptions.ErrorConversionOfDurationException
 import com.google.gson.annotations.SerializedName;
 
 public class Titulo implements Comparable<Titulo> {
-    @SerializedName("Title")
+    //@SerializedName("Title")
     private String name;
-    @SerializedName("Year")
+    //@SerializedName("Year")
     private int releaseDate;
     private int durationInMinutes;
     private boolean includedInPlan;
@@ -22,21 +22,20 @@ public class Titulo implements Comparable<Titulo> {
     }
 
     public Titulo(TituloOmdb miTituloOmdb) {
-     this.name = miTituloOmdb.title();
-     this.releaseDate = Integer.valueOf(miTituloOmdb.year()); //year es un String y 'releaseDate' es int
+        this.name = miTituloOmdb.title();
+        this.releaseDate = Integer.valueOf(miTituloOmdb.year()); //year es un String y 'releaseDate' es int
 
-    //creando mi propia excepcion
-    //excepcion para 'runtime' que devuelve API con 'N/A'
-    if(miTituloOmdb.runtime().contains("N/A")) {
-        throw new ErrorConversionOfDurationException("Unnable to convert duration string N/A to number.");
-    }
+        //creando mi propia excepcion
+        if(miTituloOmdb.runtime().contains("N/A")) { //excepcion para 'runtime' que devuelve API con 'N/A'
+            throw new ErrorConversionOfDurationException("Unnable to convert duration string N/A to number.");
+        }
 
-     this.durationInMinutes = Integer.valueOf(
-             miTituloOmdb
-                     .runtime()
-                     .substring(0, 3)
-                     .replace(" ", "") //dado el caso de obtener "90 "
-     ); //'runtime' obtiene "000 min"
+        this.durationInMinutes = Integer.valueOf(
+                miTituloOmdb
+                        .runtime() //'runtime' obtiene "000 min" o "00 min"
+                        .substring(0, 3) //toma los 1ros 3 valores
+                        .replace(" ", "") //dado el caso de obtener "90 ", elimina blank space
+        );
     }
 
     //setters
@@ -109,8 +108,8 @@ public class Titulo implements Comparable<Titulo> {
     //sobreescribir el 'toString' para visualizarlo más fácilmente
     @Override
     public String toString() {
-        return " Title name='" + name + '\'' +
+        return "(Name='" + name + '\'' +
                 ", release year=" + releaseDate +
-                ", duration= " +  durationInMinutes;
+                ", duration= " +  durationInMinutes + ")";
     }
 }

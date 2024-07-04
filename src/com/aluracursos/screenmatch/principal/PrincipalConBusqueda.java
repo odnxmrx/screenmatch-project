@@ -7,64 +7,96 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class PrincipalConBusqueda {
     public static void main(String[] args) throws IOException, InterruptedException {
 
         Scanner userInput = new Scanner(System.in);
-        System.out.println("Enter a movie name: ");
-        var newSearch = userInput.nextLine();
 
-        //URL to search API
-        String searchUrl = "https://www.omdbapi.com/?t=" +
-                newSearch.replace(" ","+") +
-                "&apikey=b81b726d";
+        //create list of movie titles
+        List<Titulo> myTitles = new ArrayList<>(); //'List' -> Interface. 'ArrayList' -> Clase
 
-        try {
-            //utilizando la clase HttpRequest
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(searchUrl)) //url a consultar
-                    .build();
+        //Gson myGson = new Gson();
+        Gson myGson = new GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                .setPrettyPrinting() //dar mejor formato a JSON
+                .create();
 
-            HttpResponse<String> response = client
-                    .send(request, HttpResponse.BodyHandlers.ofString());
+        //Get movie list
+        while(true) {
 
-            String json = response.body();
-            //System.out.println(response.body());
-            System.out.println(json);
+            System.out.println("Enter a movie name: ");
+            var newSearch = userInput.nextLine();
 
-            //Gson myGson = new Gson();
-            Gson myGson = new GsonBuilder()
-                    .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
-                    .create();
+            if(newSearch.equalsIgnoreCase("exit")) {
+                break;
+            }
 
-            TituloOmdb miTituloOmdb = myGson.fromJson(json, TituloOmdb.class);
+            //URL to search API
+            String searchUrl = "https://www.omdbapi.com/?t=" +
+                    newSearch.replace(" ","+") +
+                    "&apikey=b81b726d";
+
+            try {
+                //utilizando la clase HttpRequest
+                HttpClient client = HttpClient.newHttpClient();
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create(searchUrl)) //url a consultar
+                        .build();
+
+                HttpResponse<String> response = client
+                        .send(request, HttpResponse.BodyHandlers.ofString());
+
+                String json = response.body();
+                //System.out.println(response.body());
+                System.out.println(json);
+
+                TituloOmdb miTituloOmdb = myGson.fromJson(json, TituloOmdb.class);
 
 //        System.out.println(miTitulo.getName());
-            System.out.println(miTituloOmdb);
+                System.out.println(miTituloOmdb);
 
-            Titulo miTitulo = new Titulo(miTituloOmdb);
-            System.out.println("Titulo ya convertido: " + miTitulo);
+                Titulo miTitulo = new Titulo(miTituloOmdb);
+                System.out.println("Titulo ya convertido: " + miTitulo);
 
-        } catch (NumberFormatException e) { //siempre se debe incluir el 'catch'
-            System.out.println("Ocurrió un error: ");
-            System.out.println(e.getMessage());
-            //throw new RuntimeException(e);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error en URI. Verifique dirección.");
-        } catch (ErrorConversionOfDurationException e) {
-            System.out.println(e.getMessage()); //imprimimos el error seteado al crear throw new
-        } catch (Exception e) { //'Exception' clase madre de todas las excepciones
-            //NO es buena práctica tener todas las excepciones englobadas pues perdemos control
-            System.out.println("Ocurrió error inesperado.");
+//                //escritura que creará archivo 'peliculas.txt'
+//                FileWriter escritura = new FileWriter("peliculas.txt");
+//                //escribir dentro del archivo
+//                escritura.write(miTitulo.toString()); //el objeto 'miTitulo' lo pasamos a String
+//                //IMPORTANTE, cerrar la conexión a la escritura (evita problemas de memoria, etc)
+//                escritura.close();
+
+                myTitles.add(miTitulo); //add to 'MyTitles' list, single object 'miTitulo' from API
+
+            } catch (NumberFormatException e) { //siempre se debe incluir el 'catch'
+                System.out.println("Ocurrió un error: ");
+                System.out.println(e.getMessage());
+                //throw new RuntimeException(e);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error en URI. Verifique dirección.");
+            } catch (ErrorConversionOfDurationException e) {
+                System.out.println(e.getMessage()); //imprimimos el error seteado al crear throw new
+            } catch (Exception e) { //'Exception' clase madre de todas las excepciones
+                //NO es buena práctica tener todas las excepciones englobadas pues perdemos control
+                System.out.println("Ocurrió error inesperado.");
+            }
         }
+        System.out.println(myTitles); //print my Titles
+
+        //guardamos esta lista en un archivo
+        FileWriter escritura = new FileWriter("titulos.json");
+        escritura.write(myGson.toJson(myTitles)); //debemos convertir nuestros titles en un JSON - Usamos 'Gson'
+        escritura.close();
+
         System.out.println("Programa finalizado.");
 
     }
