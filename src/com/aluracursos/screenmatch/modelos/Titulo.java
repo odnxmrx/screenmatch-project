@@ -1,7 +1,12 @@
 package com.aluracursos.screenmatch.modelos;
 
-public class Titulo {
+import com.aluracursos.screenmatch.exceptions.ErrorConversionOfDurationException;
+import com.google.gson.annotations.SerializedName;
+
+public class Titulo implements Comparable<Titulo> {
+    //@SerializedName("Title")
     private String name;
+    //@SerializedName("Year")
     private int releaseDate;
     private int durationInMinutes;
     private boolean includedInPlan;
@@ -14,6 +19,23 @@ public class Titulo {
     public Titulo(String name, int releaseDate) {
         this.name = name;
         this.releaseDate = releaseDate;
+    }
+
+    public Titulo(TituloOmdb miTituloOmdb) {
+        this.name = miTituloOmdb.title();
+        this.releaseDate = Integer.valueOf(miTituloOmdb.year()); //year es un String y 'releaseDate' es int
+
+        //creando mi propia excepcion
+        if(miTituloOmdb.runtime().contains("N/A")) { //excepcion para 'runtime' que devuelve API con 'N/A'
+            throw new ErrorConversionOfDurationException("Unnable to convert duration string N/A to number.");
+        }
+
+        this.durationInMinutes = Integer.valueOf(
+                miTituloOmdb
+                        .runtime() //'runtime' obtiene "000 min" o "00 min"
+                        .substring(0, 3) //toma los 1ros 3 valores
+                        .replace(" ", "") //dado el caso de obtener "90 ", elimina blank space
+        );
     }
 
     //setters
@@ -77,4 +99,17 @@ public class Titulo {
         return evaluationSum / evaluationsTotalCount;
     } //no puede estar vacía. Debe retornar algo (a diferencia de 'void')
 
+    //sobrescribiendo el 'compareTo' para comparar solo por 'name'
+    @Override
+    public int compareTo(Titulo titulo) {
+        return this.getName().compareTo(titulo.getName());
+    }
+
+    //sobreescribir el 'toString' para visualizarlo más fácilmente
+    @Override
+    public String toString() {
+        return "(Name='" + name + '\'' +
+                ", release year=" + releaseDate +
+                ", duration= " +  durationInMinutes + ")";
+    }
 }
