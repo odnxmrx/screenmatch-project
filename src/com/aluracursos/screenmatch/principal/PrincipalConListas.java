@@ -50,14 +50,16 @@ public class PrincipalConListas {
         listaDeArtistas.add("Antonio Banderas");
         listaDeArtistas.add("Ricardo Darin");
 
-        System.out.println("Lista de Artistas no ordenada:");
+        System.out.println("Lista de Artistas sin ordenar");
         System.out.println(listaDeArtistas);
 
         //COLLECTIONS
         //paquete de java.lang que permite ordenar
         Collections.sort(listaDeArtistas);
-        System.out.println("Lista de Artistas ordenada:");
+        System.out.println("Lista de Artistas ya ordenada:");
         System.out.println(listaDeArtistas);
+
+        System.out.println("***************************");
 
         //ahora, comparando titulos de mi lista de peliculas
         Collections.sort(miLista);

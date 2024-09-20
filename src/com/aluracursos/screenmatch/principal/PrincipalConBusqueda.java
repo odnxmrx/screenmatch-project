@@ -34,7 +34,7 @@ public class PrincipalConBusqueda {
         //Get movie list
         while(true) {
 
-            System.out.println("Enter a movie name: ");
+            System.out.println("Enter a movie name: (or type 'exit' to end program) ");
             var newSearch = userInput.nextLine();
 
             if(newSearch.equalsIgnoreCase("exit")) {
@@ -90,6 +90,7 @@ public class PrincipalConBusqueda {
                 System.out.println("Ocurrió error inesperado.");
             }
         }
+        System.out.println("***************************");
         System.out.println(myTitles); //print my Titles
 
         //guardamos esta lista en un archivo
