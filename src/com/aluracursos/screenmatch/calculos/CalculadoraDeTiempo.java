@@ -9,7 +9,7 @@ public class CalculadoraDeTiempo {
     }
 
     //ir incluyendo en lista (pelis o series)
-    public void incluye(Titulo titulo){
+    public void incluye(@org.jetbrains.annotations.NotNull Titulo titulo){
         this.tiempoTotal += titulo.getDurationInMinutes();
     }
 

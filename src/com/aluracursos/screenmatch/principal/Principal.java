@@ -30,8 +30,8 @@ public class Principal {
         miPelicula.evaluate(9.2);
         miPelicula.evaluate(7.5);
 
-        System.out.println(miPelicula.getEvaluationsTotal());
-        System.out.println(miPelicula.calculateMedia());
+        System.out.println("Total evaluations: " + miPelicula.getEvaluationsTotal());
+        System.out.println("Evaluations avg: " + miPelicula.calculateMedia());
 
         System.out.println("************");
 
