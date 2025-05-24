@@ -5,10 +5,6 @@ import com.aluracursos.screenmatch.calculos.Clasificable;
 public class Pelicula extends Titulo implements Clasificable {
     private String director;
 
-//    public Pelicula(String name) {
-//        //super();
-//        this.setName(name);
-//    }
     //creamos el constructor de Pelicula
     public Pelicula(String name, int releaseDate) {
         super(name, releaseDate);
@@ -36,6 +32,6 @@ public class Pelicula extends Titulo implements Clasificable {
     public String toString() {
         //return super.toString();
         //'super' -> hacemos referencia a nuestra clase madre
-        return "Pelicula: " + this.getName() + " (" + getReleaseDate() + ")."; //retornamos String
+        return "Pelicula: " + this.getName() + " (" + getReleaseDate() + ")"; //retornamos String
     }
 }
