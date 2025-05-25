@@ -83,7 +83,7 @@ public class Principal {
         peliculaDeBruno.setDurationInMinutes(180);
         peliculaDeBruno.showDataSheet();
 
-        //creando un 'ArrayList' del tipo de dato 'Pelicula'
+        // creando un 'ArrayList' del tipo de dato 'Pelicula'
         ArrayList<Pelicula> miListaDePeliculas = new ArrayList<>();
 
         //adding new items to my list
@@ -91,13 +91,14 @@ public class Principal {
         miListaDePeliculas.add(otraPelicula);
         miListaDePeliculas.add(peliculaDeBruno);
 
-        //conocer el tamaño de la lista -> metodo '.size();'
+        // conocer el tamaño de la lista -> metodo '.size();'
         System.out.println("El tamaño de mi lista es: " +  miListaDePeliculas.size());
-        //obtener el primer item -> metodo '.get(int)'
+        // obtener el primer item -> metodo '.get(int)'
         System.out.println("La 1er pelicula en la lista es: " + miListaDePeliculas.get(0).getName());
 
         //imprimir la lista completa
         System.out.println(miListaDePeliculas);
+        System.out.println("El toString: " + miListaDePeliculas.toString());
 
         System.out.println("toString de la pelicula en index 0: " + miListaDePeliculas.get(0).toString());
 

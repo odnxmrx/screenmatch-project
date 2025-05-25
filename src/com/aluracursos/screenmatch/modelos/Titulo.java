@@ -23,7 +23,7 @@ public class Titulo implements Comparable<Titulo> {
 
     public Titulo(TituloOmdb miTituloOmdb) {
         this.name = miTituloOmdb.title();
-        this.releaseDate = Integer.valueOf(miTituloOmdb.year()); //year es un String y 'releaseDate' es int
+        this.releaseDate = Integer.valueOf(miTituloOmdb.year()); // Year es un String y 'releaseDate' es int
 
         //creando mi propia excepcion
         if(miTituloOmdb.runtime().contains("N/A")) { //excepcion para 'runtime' que devuelve API con 'N/A'
@@ -101,8 +101,8 @@ public class Titulo implements Comparable<Titulo> {
 
     //sobrescribiendo el 'compareTo' para comparar solo por 'name'
     @Override
-    public int compareTo(Titulo titulo) {
-        return this.getName().compareTo(titulo.getName());
+    public int compareTo(Titulo otroTitulo) {
+        return this.getName().compareTo(otroTitulo.getName());
     }
 
     //sobreescribir el 'toString' para visualizarlo más fácilmente
