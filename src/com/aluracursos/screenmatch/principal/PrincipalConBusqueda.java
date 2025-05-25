@@ -20,6 +20,7 @@ import java.util.Scanner;
 public class PrincipalConBusqueda {
     public static void main(String[] args) throws IOException, InterruptedException {
 
+        String clave = "b81b726d";
         Scanner userInput = new Scanner(System.in);
 
         //create list of movie titles
@@ -27,7 +28,7 @@ public class PrincipalConBusqueda {
 
         //Gson myGson = new Gson();
         Gson myGson = new GsonBuilder()
-                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE) // Recibiendo formato en MAYUS desde API
                 .setPrettyPrinting() //dar mejor formato a JSON
                 .create();
 
@@ -44,7 +45,7 @@ public class PrincipalConBusqueda {
             //URL to search API
             String searchUrl = "https://www.omdbapi.com/?t=" +
                     newSearch.replace(" ","+") +
-                    "&apikey=b81b726d";
+                    "&apikey=" + clave;
 
             try {
                 //utilizando la clase HttpRequest
@@ -62,22 +63,15 @@ public class PrincipalConBusqueda {
 
                 TituloOmdb miTituloOmdb = myGson.fromJson(json, TituloOmdb.class);
 
-//        System.out.println(miTitulo.getName());
+//              System.out.println(miTitulo.getName());
                 System.out.println(miTituloOmdb);
 
                 Titulo miTitulo = new Titulo(miTituloOmdb);
                 System.out.println("Titulo ya convertido: " + miTitulo);
 
-//                //escritura que creará archivo 'peliculas.txt'
-//                FileWriter escritura = new FileWriter("peliculas.txt");
-//                //escribir dentro del archivo
-//                escritura.write(miTitulo.toString()); //el objeto 'miTitulo' lo pasamos a String
-//                //IMPORTANTE, cerrar la conexión a la escritura (evita problemas de memoria, etc)
-//                escritura.close();
-
                 myTitles.add(miTitulo); //add to 'MyTitles' list, single object 'miTitulo' from API
 
-            } catch (NumberFormatException e) { //siempre se debe incluir el 'catch'
+            } catch (NumberFormatException e) {
                 System.out.println("Ocurrió un error: ");
                 System.out.println(e.getMessage());
                 //throw new RuntimeException(e);

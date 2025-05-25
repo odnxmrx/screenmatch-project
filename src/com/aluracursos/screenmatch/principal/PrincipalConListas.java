@@ -22,16 +22,16 @@ public class PrincipalConListas {
 
         Serie breakingBad = new Serie("Braking Bad", 2018); //constructor
         
-        //creando un 'ArrayList' del tipo de dato 'Titulo'
-        ArrayList<Titulo> miLista = new ArrayList<>();
+        // creando un 'ArrayList' del tipo de dato 'Titulo'
+        ArrayList<Titulo> miListaDeTitulos = new ArrayList<>();
         //adding new items to my list
-        miLista.add(miPelicula);
-        miLista.add(otraPelicula);
-        miLista.add(peliculaDeBruno);
-        miLista.add(breakingBad);
+        miListaDeTitulos.add(miPelicula);
+        miListaDeTitulos.add(otraPelicula);
+        miListaDeTitulos.add(peliculaDeBruno);
+        miListaDeTitulos.add(breakingBad);
 
         //iterando cada item con un forEach
-        for(Titulo item:miLista) {
+        for(Titulo item:miListaDeTitulos) {
             //'item' nombre dado a cada valor
             //'miLista' el arreglo a iterar
             System.out.println(item.getName());
@@ -62,13 +62,13 @@ public class PrincipalConListas {
         System.out.println("***************************");
 
         //ahora, comparando titulos de mi lista de peliculas
-        Collections.sort(miLista);
-        System.out.println("Lista ordenada de titulos: " + miLista);
+        Collections.sort(miListaDeTitulos);
+        System.out.println("Lista ordenada de titulos: " + miListaDeTitulos);
 
         //ordenando de otra manera:
         //utilizando método .sort() propio de ArrayList
-        miLista.sort(Comparator.comparing(Titulo::getReleaseDate));
-        System.out.println("Lista de títulos ordenada por fecha: " +  miLista);
+        miListaDeTitulos.sort(Comparator.comparing(Titulo::getReleaseDate));
+        System.out.println("Lista de títulos ordenada por fecha: " +  miListaDeTitulos);
 
     }
 }
